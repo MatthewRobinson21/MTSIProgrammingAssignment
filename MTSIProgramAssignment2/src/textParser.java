@@ -35,21 +35,25 @@ public class textParser {
         int evenCount = 0;
         int oddCount = 0;
 
+        //Hash map created to control duplicates
         Map<String, Integer> map = new HashMap<String, Integer>();
         while (input.hasNext()) {
 
+            //stores each word from text
             String word = input.next().toLowerCase();
             word = removeAccents(word);
-
+            
+            //Handles case of a word thats first character is a parentheses
             if (word.contains("(")) {
                 word = word.substring(1);
             }
 
-            
+            //Removes all of the special characters from the txt file
             word = word.split("[^a-zA-Z0-9]")[0];
             
-
-            
+            //New word added to map only if its the first occurrence
+            //Only new words are counted toward the below/above 5 letter count and the
+            //even/odd letter count
             if (!map.containsKey(word) && word.length() > 0) {
                 map.put(word, 1);
                 wordCount++;
@@ -69,11 +73,13 @@ public class textParser {
                 }
 
             }
+            //counter increases in map for repeat words
             else if (word.length() > 0) {
                 map.put(word, map.get(word) + 1);
             }
         }
 
+        //Prints all required data to console
         System.out.println("Number of Individual words: " + wordCount);
         System.out.println("Number of words that have more than 5 letters: "
             + above5);
@@ -84,7 +90,7 @@ public class textParser {
                 + evenCount);
         System.out.println(
             "Amount of words that have an odd amount of letters: " + oddCount);
-        System.out.print(map);
+        //System.out.print(map);
 
     }
 
