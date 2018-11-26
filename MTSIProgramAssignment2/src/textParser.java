@@ -28,6 +28,7 @@ public class textParser {
         File file = new File(filename);
         Scanner input = new Scanner(file);
 
+        // Counters
         int wordCount = 0;
         int below5 = 0;
         int above5 = 0;
